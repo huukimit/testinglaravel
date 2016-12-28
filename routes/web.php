@@ -17,23 +17,26 @@ Route::get('/', [
 ]);
 
 Route::get('login', [
-    'as'   => 'auth.getLoginPage',
-    'uses' => 'AuthController@getLoginPage',
+    'as'         => 'auth.getLoginPage',
+    'uses'       => 'AuthController@getLoginPage',
+    'middleware' => 'guest'
 ]);
 
 Route::get('register', [
     'as'   => 'auth.getRegisterPage',
-    'uses' => 'AuthController@getRegisterPage',
+    'uses' => 'AuthController@getRegisterPage'
 ]);
 
 Route::post('login', [
-    'as'   => 'auth.postLogin',
-    'uses' => 'AuthController@postLogin',
+    'as'         => 'auth.postLogin',
+    'uses'       => 'AuthController@postLogin',
+    'middleware' => 'guest'
 ]);
 
 Route::post('register', [
-    'as'   => 'auth.postRegister',
-    'uses' => 'AuthController@postRegister',
+    'as'         => 'auth.postRegister',
+    'uses'       => 'AuthController@postRegister',
+    'middleware' => 'guest'
 ]);
 
 Route::get('logout', [

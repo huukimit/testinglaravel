@@ -24,6 +24,15 @@ class LoginTest extends TestCase
         ];
     }
     
+    public function testCanNotSeeLoginPage()
+    {
+        $this->session([SS_LOGIN => 'example']);
+        
+        $this->assertSessionHas(SS_LOGIN)
+            ->get(route('auth.getLoginPage'))
+            ->assertRedirectedToRoute('home');
+    }
+    
     public function testCanSeeLoginPage()
     {
         $this->assertSessionMissing(SS_LOGIN);

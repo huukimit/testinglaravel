@@ -9,9 +9,10 @@
 namespace App\Repositories;
 
 
+use App\Exceptions\RepositoryException;
 use Illuminate\Container\Container as Application;
 use Illuminate\Database\Eloquent\Model;
-use League\Flysystem\Exception;
+
 
 abstract class BaseRepository
 {
@@ -27,8 +28,8 @@ abstract class BaseRepository
     public function makeModel()
     {
         $model = $this->app->make($this->model());
-        if (! $model instanceof Model) {
-            throw new Exception('Repository dose not support!');
+        if (!$model instanceof Model) {
+            throw new RepositoryException('Class: ' .$this->model() . ' dose not support Eloquent.');
         }
         $this->model = $model;
     }

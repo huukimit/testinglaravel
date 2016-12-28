@@ -6,8 +6,8 @@ namespace App\Http\Controllers;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Http\Requests\Auth\PostLoginRequest;
 use App\Http\Requests\Auth\PostRegisterRequest;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 
 class AuthController extends Controller
@@ -49,6 +49,7 @@ class AuthController extends Controller
      *
      * @param PostLoginRequest $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthenticationException
      */
     public function postLogin(PostLoginRequest $request)
     {
@@ -57,8 +58,7 @@ class AuthController extends Controller
         
         if (is_null($user)) {
             alert($request, 'The credentials does not matches any user.', 'danger');
-            
-            return redirect()->route('auth.getLoginPage')->withInput($request->all());
+            throw new AuthenticationException();
         } else {
             alert($request, 'Welcome back, ' . $user->name);
             
