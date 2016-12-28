@@ -65,7 +65,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
      *
      * @return mixed
      */
-    protected function model()
+    public function model()
     {
         return User::class;
     }

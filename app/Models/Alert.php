@@ -27,7 +27,7 @@ class Alert
      * @param        $message
      * @param string $type
      */
-    public function __construct($message, $type = 'success')
+    public function __construct($message = '', $type = 'success')
     {
         $this->message = $message;
         $this->type    = $type;

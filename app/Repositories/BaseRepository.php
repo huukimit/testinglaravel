@@ -39,5 +39,5 @@ abstract class BaseRepository
      *
      * @return mixed
      */
-    abstract protected function model();
+    abstract public function model();
 }
