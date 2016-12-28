@@ -62,4 +62,15 @@ class LoginTest extends TestCase
             ->assertSessionHas('errors')
             ->assertSessionMissing(SS_LOGIN);
     }
+    
+    /**
+     * Test handle unauthenticated with ajax
+     * Test get login page via ajax because authenticated
+     */
+    public function testHandleUnAuthenticated()
+    {
+        $data     = $this->credentials[1];
+        $header   = ['X-Requested-With' => 'XMLHttpRequest'];
+        $this->post(route('auth.getLoginPage'), $data, $header)->isJson();
+    }
 }
